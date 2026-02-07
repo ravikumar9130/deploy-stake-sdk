@@ -1,0 +1,66 @@
+{
+  "name": "deploy-sdk-js",
+  "version": "0.0.1",
+  "description": "Deploy SDK - Complete DeFi interaction library with support for mint, stake, unstake, and redeem operations",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./wallet-adapters": {
+      "types": "./dist/wallet-adapters/index.d.ts",
+      "import": "./dist/wallet-adapters/index.mjs",
+      "require": "./dist/wallet-adapters/index.js"
+    },
+    "./modules": {
+      "types": "./dist/modules/index.d.ts",
+      "import": "./dist/modules/index.mjs",
+      "require": "./dist/modules/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/wallet-adapters/index.ts src/modules/index.ts --format cjs,esm --dts --minify",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "defi",
+    "staking",
+    "ethereum",
+    "web3",
+    "sdk",
+    "erc4626",
+    "eip712"
+  ],
+  "author": "Deploy Team",
+  "license": "MIT",
+  "peerDependencies": {
+    "ethers": ">=5.0.0"
+  },
+  "dependencies": {
+    "eventemitter3": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "ethers": "^5.8.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
