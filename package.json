@@ -1,6 +1,6 @@
 {
   "name": "deploy-sdk-js",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Deploy SDK - Complete DeFi interaction library with support for mint, stake, unstake, and redeem operations",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -43,7 +43,7 @@
     "eip712"
   ],
   "author": "Deploy Team",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "peerDependencies": {
     "ethers": ">=5.0.0"
   },
