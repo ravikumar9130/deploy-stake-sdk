@@ -16,20 +16,26 @@ npm install deploy-sdk-js ethers
 
 ### 1. Initialize SDK with Privy
 
+Pass a **connected wallet** from `useWallets()` (not the `usePrivy()` object). Ensure `ready` is true before initializing.
+
 ```typescript
-import { DeploySDK, PrivyAdapter, COLLATERAL_ASSETS, STAKE_TOKENS } from 'deploy-sdk-js';
-import { usePrivy } from '@privy-io/react-auth';
+import { DeploySDK, PrivyAdapter, PrivyConnectedWallet, COLLATERAL_ASSETS, STAKE_TOKENS } from 'deploy-sdk-js';
+import { useWallets } from '@privy-io/react-auth';
 
 function App() {
-  const privy = usePrivy();
-  
+  const { wallets, ready } = useWallets();
   const sdk = new DeploySDK({
     apiUrl: 'https://your-api-url.com', // provide your backend API URL
     chainId: 1, // Ethereum mainnet
   });
 
   const connectWallet = async () => {
-    const adapter = new PrivyAdapter(privy);
+    if (!ready || !wallets.length) {
+      console.error('No wallet connected');
+      return;
+    }
+    const wallet = wallets[0]; // or pick by chain/address
+    const adapter = new PrivyAdapter(wallet as PrivyConnectedWallet);
     await sdk.initialize(adapter);
     console.log('Connected:', await sdk.getAddress());
   };

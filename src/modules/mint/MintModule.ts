@@ -61,7 +61,11 @@ export class MintModule {
     };
 
     try {
-      const signature = await signer._signTypedData(domain, EIP712_TYPES_ORDER, value);
+      const signTypedData = (signer as any).signTypedData ?? (signer as any)._signTypedData;
+      if (typeof signTypedData !== 'function') {
+        throw new Error('Signer does not support EIP-712 signTypedData (ethers v5 or v6 required)');
+      }
+      const signature = await signTypedData.call(signer, domain, EIP712_TYPES_ORDER, value);
       return signature;
     } catch (error) {
       throw new DeploySDKError(

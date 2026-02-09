@@ -1,15 +1,15 @@
 import { DeploySDK } from './core/DeploySDK';
-import { PrivyAdapter, ExternalWalletAdapter } from './wallet-adapters';
+import { PrivyAdapter, ExternalWalletAdapter, PrivyConnectedWallet } from './wallet-adapters';
 import { COLLATERAL_ASSETS, STAKE_TOKENS, ChainId, ErrorCode } from './core';
 
-// Example 1: Basic initialization with Privy
-async function exampleWithPrivy(privy: any) {
+// Example 1: Basic initialization with Privy (pass a connected wallet from useWallets())
+async function exampleWithPrivy(wallet: PrivyConnectedWallet) {
   const sdk = new DeploySDK({
     apiUrl: 'https://your-api-url.com', // provide your backend API URL
     chainId: ChainId.ETHEREUM,
   });
 
-  const adapter = new PrivyAdapter(privy);
+  const adapter = new PrivyAdapter(wallet);
   await sdk.initialize(adapter);
 
   console.log('Connected address:', await sdk.getAddress());
