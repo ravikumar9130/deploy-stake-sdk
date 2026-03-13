@@ -1,6 +1,6 @@
 {
   "name": "deploy-sdk-js",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Deploy SDK - Complete DeFi interaction library with support for mint, stake, unstake, and redeem operations",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

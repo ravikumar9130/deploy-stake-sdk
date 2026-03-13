@@ -45,17 +45,18 @@ export const STAKE_TOKENS: Record<string, StakeToken> = {
   },
 };
 
+/** Must match minter contract hashOrder((string,uint8,uint120,uint128,...uint128,uint128)) exactly. */
 export const EIP712_TYPES_ORDER = {
   Order: [
     { name: 'order_id', type: 'string' },
     { name: 'order_type', type: 'uint8' },
-    { name: 'expiry', type: 'uint256' },
-    { name: 'nonce', type: 'uint256' },
+    { name: 'expiry', type: 'uint120' },
+    { name: 'nonce', type: 'uint128' },
     { name: 'benefactor', type: 'address' },
     { name: 'beneficiary', type: 'address' },
     { name: 'collateral_asset', type: 'address' },
-    { name: 'collateral_amount', type: 'uint256' },
-    { name: 'dAsset_amount', type: 'uint256' },
+    { name: 'collateral_amount', type: 'uint128' },
+    { name: 'dAsset_amount', type: 'uint128' },
   ],
 };
 

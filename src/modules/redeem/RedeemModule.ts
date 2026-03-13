@@ -17,7 +17,7 @@ export class RedeemModule {
   ): Promise<RedeemOrder> {
     const address = await this.sdk.getAddress();
     
-    const orderId = crypto.randomUUID();
+    const orderId = `redeem-${Date.now()}-${Math.floor(Math.random() * 1000000)}`;
     const expiry = Math.floor(Date.now() / 1000) + 
       (options?.expiryMinutes || 5) * 60;
     
@@ -174,7 +174,7 @@ export class RedeemModule {
     );
 
     const order = {
-      order_id: crypto.randomUUID(),
+      order_id: `redeem-${Date.now()}-${Math.floor(Math.random() * 1000000)}`,
       order_type: 1,
       expiry: Math.floor(Date.now() / 1000) + 300,
       nonce: Date.now(),
